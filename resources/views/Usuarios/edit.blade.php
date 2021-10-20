@@ -10,8 +10,8 @@
             </div>
         </div>
     </div>
-    {{-- <form action="{{ route('usuarios.update', $usuario->id) }}" method="POST"> --}}
-    {!!Form::model($usuario,['route'=>['usuarios.update',[$usuario->id]],'files'=>true,'method'=>'post'])!!}
+    <form action="{{ route('usuarios.update', $usuario->id) }}" method="POST">
+    {{-- {!!Form::model($usuario,['route'=>['usuarios.update',[$usuario->id]],'files'=>true,'method'=>'post'])!!} --}}
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
@@ -37,17 +37,27 @@
                     <input type="email" name="correo" class="form-control" value="{{$usuario->correo}}" placeholder="juanp@gmail.com">
                 </div>
             </div>
-            {{-- Select Region --}}
+
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Region de Origen:</strong>
-                      {{Form::select('region',$regiones,null,["class"=>"form-control"])}}
-                </div>
+              <div class="form-group">
+                <strong>Region de Origen:</strong>
+                <select class="form-select" aria-label="Default select example" name="region" required>
+                  @foreach ($regiones as $r)
+                      {{-- $r->id == $usuario->id_region --}}
+                      @if ($r->id == $usuario->id_region)
+                        <option selected value="{{$r->id}}">{{$r->nombre}}</option>
+                      @else
+                        <option value="{{$r->id}}">{{$r->nombre}}</option>
+                      @endif
+                  @endforeach
+                </select>
+              </div>
             </div>
+
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Actualizar</button>
             </div>
         </div>
-    {!!Form::close()!!}
-    {{-- </form> --}}
+    {{-- {!!Form::close()!!} --}}
+    </form>
 @endsection

@@ -42,7 +42,7 @@ class UsuarioController extends Controller
     }
 
     public function edit($id){
-      $regiones = Region::pluck('nombre','codigo');
+      $regiones = Region::get();
       $usuario = Usuario::findOrFail($id);
       return view('usuarios.edit', compact('usuario','regiones'));
     }
@@ -53,7 +53,7 @@ class UsuarioController extends Controller
         $u->nombre = $request->input('nombre');
         $u->apellido = $request->input('apellido');
         $u->correo = $request->input('correo');
-        $u->region = $request->input('id_region');
+        $u->id_region = $request->input('region');
         $u->update();
         return back()->with('success','Felicidades, El Usuario se actualizo exitosamente');
       } catch (\Throwable $th) {
