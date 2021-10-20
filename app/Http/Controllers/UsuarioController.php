@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Models\Region;
 use Illuminate\Http\Request;
+use App\Http\Request\UsuarioRequest;
 
 class UsuarioController extends Controller
 {
@@ -27,7 +28,6 @@ class UsuarioController extends Controller
         $u->apellido = $request->input('apellido');
         $u->correo = $request->input('correo');
         $u->id_region = $request->input('region');
-        // return $request;
         $u->save();
         return redirect()->route('usuarios.create')->with('success', 'Usuario Creado Exitosamente');
       } catch (\Throwable $th) {
@@ -50,7 +50,6 @@ class UsuarioController extends Controller
 
     public function update(Request $request, $id){
       try {
-        // return $request;
         $u = Usuario::findOrFail($id);
         $u->nombre = $request->input('nombre');
         $u->apellido = $request->input('apellido');

@@ -25,7 +25,7 @@ class UsuarioRequest extends FormRequest
     {
         return [
             //
-            'rut' =>
+            'rut' => 'required|regex:/^\d{7,8}[0-9K]{1}$/',
             'nombre' => 'required|min:2|max:100',
             'apellido'=> 'required|min:2|max:100',
             'correo' => 'required|min:4|max:100|email|unique:usuario,correo',
