@@ -15,7 +15,7 @@ class UsuarioController extends Controller
     }
 
     public function create(){
-      $regiones = Region::pluck('nombre');
+      $regiones = Region::get();
       return view('usuarios.create',compact('regiones'));
     }
 
@@ -26,7 +26,8 @@ class UsuarioController extends Controller
         $u->nombre = $request->input('nombre');
         $u->apellido = $request->input('apellido');
         $u->correo = $request->input('correo');
-        $u->id_region = $request->input('id_region');
+        $u->id_region = $request->input('region');
+        // return $request;
         $u->save();
         return redirect()->route('usuarios.create')->with('success', 'Usuario Creado Exitosamente');
       } catch (\Throwable $th) {
@@ -46,13 +47,13 @@ class UsuarioController extends Controller
       return view('usuarios.edit', compact('usuario','regiones'));
     }
 
-    public function update(){
+    public function update(Request $request, $id){
       try {
         $u = Usuario::findOrFail($id);
         $u->nombre = $request->input('nombre');
         $u->apellido = $request->input('apellido');
         $u->correo = $request->input('correo');
-        $u->id_region = $request->input('id_region');
+        $u->region = $request->input('id_region');
         $u->update();
         return back()->with('success','Felicidades, El Usuario se actualizo exitosamente');
       } catch (\Throwable $th) {
@@ -61,7 +62,7 @@ class UsuarioController extends Controller
       }
     }
 
-    public function destroy(){
+    public function destroy($id){
       $usuario = Usuario::findOrFail($id);
       $usuario->delete();
       return redirect()->route('usuarios.index')->with('success', 'Usuario Eliminado Exitosamente');

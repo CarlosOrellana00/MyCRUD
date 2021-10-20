@@ -14,7 +14,6 @@ class RegionesSeeder extends Seeder
      */
     public function run()
     {
-        //
         $arrayRegiones =[
           'Arica y Parinacota y Tarapaca',
           'Antofagasta',
