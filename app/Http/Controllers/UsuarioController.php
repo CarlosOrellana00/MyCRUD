@@ -19,23 +19,51 @@ class UsuarioController extends Controller
       return view('usuarios.create',compact('regiones'));
     }
 
-    public function store(){
-
+    public function store(Request $request){
+      try {
+        $u = new Usuario();
+        $u->rut = $request->input('rut');
+        $u->nombre = $request->input('nombre');
+        $u->apellido = $request->input('apellido');
+        $u->correo = $request->input('correo');
+        $u->id_region = $request->input('id_region');
+        $u->save();
+        return redirect()->route('usuarios.create')->with('success', 'Usuario Creado Exitosamente');
+      } catch (\Throwable $th) {
+        return $th;
+        return back()->with('danger','ERROR! El Usuario no se pudo agregar');
+      }
     }
 
-    public function show(){
-
+    public function show($id){
+      $usuario = Usuario::findOrFail($id);
+      return view('usuarios.show', compact('usuario'));
     }
 
-    public function edit(){
-
+    public function edit($id){
+      $regiones = Region::pluck('nombre','codigo');
+      $usuario = Usuario::findOrFail($id);
+      return view('usuarios.edit', compact('usuario','regiones'));
     }
 
     public function update(){
-
+      try {
+        $u = Usuario::findOrFail($id);
+        $u->nombre = $request->input('nombre');
+        $u->apellido = $request->input('apellido');
+        $u->correo = $request->input('correo');
+        $u->id_region = $request->input('id_region');
+        $u->update();
+        return back()->with('success','Felicidades, El Usuario se actualizo exitosamente');
+      } catch (\Throwable $th) {
+        return $th;
+        return back()->with('danger','ERROR! El Usuario no se pudo actualizar');
+      }
     }
 
     public function destroy(){
-
+      $usuario = Usuario::findOrFail($id);
+      $usuario->delete();
+      return redirect()->route('usuarios.index')->with('success', 'Usuario Eliminado Exitosamente');
     }
 }
