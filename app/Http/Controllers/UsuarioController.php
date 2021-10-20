@@ -37,8 +37,9 @@ class UsuarioController extends Controller
     }
 
     public function show($id){
+      $regiones = Region::get();
       $usuario = Usuario::findOrFail($id);
-      return view('usuarios.show', compact('usuario'));
+      return view('usuarios.show', compact('usuario','regiones'));
     }
 
     public function edit($id){
@@ -49,6 +50,7 @@ class UsuarioController extends Controller
 
     public function update(Request $request, $id){
       try {
+        // return $request;
         $u = Usuario::findOrFail($id);
         $u->nombre = $request->input('nombre');
         $u->apellido = $request->input('apellido');

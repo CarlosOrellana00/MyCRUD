@@ -10,8 +10,9 @@
             </div>
         </div>
     </div>
-    <form action="{{ route('usuarios.update', $usuario->id) }}" method="POST">
-    {{-- {!!Form::model($usuario,['route'=>['usuarios.update',[$usuario->id]],'files'=>true,'method'=>'post'])!!} --}}
+    <form action="{{ route('usuarios.update', $usuario->id) }}" method="Post">
+        @csrf
+        @method('PUT')
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
@@ -37,13 +38,11 @@
                     <input type="email" name="correo" class="form-control" value="{{$usuario->correo}}" placeholder="juanp@gmail.com">
                 </div>
             </div>
-
             <div class="col-xs-12 col-sm-12 col-md-12">
               <div class="form-group">
                 <strong>Region de Origen:</strong>
                 <select class="form-select" aria-label="Default select example" name="region" required>
                   @foreach ($regiones as $r)
-                      {{-- $r->id == $usuario->id_region --}}
                       @if ($r->id == $usuario->id_region)
                         <option selected value="{{$r->id}}">{{$r->nombre}}</option>
                       @else
@@ -53,11 +52,9 @@
                 </select>
               </div>
             </div>
-
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Actualizar</button>
             </div>
         </div>
-    {{-- {!!Form::close()!!} --}}
     </form>
 @endsection

@@ -38,11 +38,9 @@
                     <input type="email" name="correo" class="form-control" placeholder="juanp@gmail.com" required>
                 </div>
             </div>
-
             <div class="col-xs-12 col-sm-12 col-md-12">
               <div class="form-group">
                   <strong>Region de Origen:</strong>
-                  {{-- <select class="form-control" id="id_region" name="id_region" onChange="CargarComuna()" required> --}}
                   <select class="form-select" aria-label="Default select example" name="region" required>
                     @foreach ($regiones as $r)
                           <option value="{{$r->id}}">"{{$r->nombre}}"</option>
@@ -50,10 +48,6 @@
                   </select>
               </div>
             </div>
-
-
-
-
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
