@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Models\Region;
 use Illuminate\Http\Request;
-use App\Http\Request\UsuarioRequest;
+use App\Http\Requests\UsuarioRequest;
 
 class UsuarioController extends Controller
 {
@@ -20,7 +20,7 @@ class UsuarioController extends Controller
       return view('usuarios.create',compact('regiones'));
     }
 
-    public function store(Request $request){
+    public function store(UsuarioRequest $request){
       try {
         $u = new Usuario();
         $u->rut = $request->input('rut');
@@ -48,7 +48,7 @@ class UsuarioController extends Controller
       return view('usuarios.edit', compact('usuario','regiones'));
     }
 
-    public function update(Request $request, $id){
+    public function update(UsuarioRequest $request, $id){
       try {
         $u = Usuario::findOrFail($id);
         $u->nombre = $request->input('nombre');
