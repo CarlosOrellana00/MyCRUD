@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Region;
 
 class RegionesSeeder extends Seeder
 {
@@ -14,47 +15,25 @@ class RegionesSeeder extends Seeder
     public function run()
     {
         //
-        $arrayRegiones = [
-          [
-            'nombre'=>'Arica y Parinacota y Tarapaca'
-          ],
-          [
-            'nombre'=>'Antofagasta'
-          ],
-          [
-            'nombre'=>'Atacama y Coquimbo'
-          ],
-          [
-            'nombre'=>'Valparaiso'
-          ],
-          [
-            'nombre'=>'OHiggins'
-          ],
-          [
-            'nombre'=>'Maule'
-          ],
-          [
-            'nombre'=>'Ñuble, Biobio y La Araucania(Norte)'
-          ],
-          [
-            'nombre'=>'La Araucania(Sur)'
-          ],
-          [
-            'nombre'=>'Los Rios y Los Lagos(Norte)'
-          ],
-          [
-            'nombre'=>'Los Lagos(Sur) y Aysen'
-          ],
-          [
-            'nombre'=>'Magallanes'
-          ],
-          [
-            'nombre'=>'Reg. Metropolintana de Santiago'
-          ],
+        $arrayRegiones =[
+          'Arica y Parinacota y Tarapaca',
+          'Antofagasta',
+          'Atacama y Coquimbo',
+          'Valparaiso',
+          'OHiggins',
+          'Maule',
+          'Ñuble, Biobio y La Araucania(Norte)',
+          'La Araucania(Sur)',
+          'Los Rios y Los Lagos(Norte)',
+          'Los Lagos(Sur) y Aysen',
+          'Magallanes',
+          'Reg. Metropolintana de Santiago'
         ];
+
+
         foreach ($arrayRegiones as $key => $value) {
           $region = new Region();
-          $region->nombre = $value['nombre'];
+          $region->nombre = $value;
           $region->save();
         }
     }
