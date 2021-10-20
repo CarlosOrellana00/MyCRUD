@@ -25,6 +25,11 @@ class UsuarioRequest extends FormRequest
     {
         return [
             //
+            'rut' =>
+            'nombre' => 'required|min:2|max:100',
+            'apellido'=> 'required|min:2|max:100',
+            'correo' => 'required|min:4|max:100|email|unique:usuario,correo',
+            'region' => 'required',
         ];
     }
 }
