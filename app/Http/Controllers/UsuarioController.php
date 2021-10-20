@@ -6,15 +6,17 @@ use App\Models\Usuario;
 use App\Models\Region;
 use Illuminate\Http\Request;
 
-class UsusarioController extends Controller
+class UsuarioController extends Controller
 {
     //
     public function index(){
-
+      $usuarios= Usuario::get();
+      return view('usuarios.index',compact('usuarios'));
     }
 
     public function create(){
-
+      $regiones = Region::pluck('nombre');
+      return view('usuarios.create',compact('regiones'));
     }
 
     public function store(){
