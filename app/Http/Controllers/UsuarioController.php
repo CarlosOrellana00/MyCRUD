@@ -20,7 +20,7 @@ class UsuarioController extends Controller
       return view('usuarios.create',compact('regiones'));
     }
 
-    public function store(UsuarioRequest $request){
+    public function store(Request $request){
       try {
         $u = new Usuario();
         $u->rut = $request->input('rut');
@@ -48,7 +48,7 @@ class UsuarioController extends Controller
       return view('usuarios.edit', compact('usuario','regiones'));
     }
 
-    public function update(UsuarioRequest $request, $id){
+    public function update(Request $request, $id){
       try {
         $u = Usuario::findOrFail($id);
         $u->nombre = $request->input('nombre');
