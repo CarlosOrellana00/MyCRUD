@@ -44,9 +44,9 @@
                 <select class="form-select" aria-label="Default select example" name="region" required>
                   @foreach ($regiones as $r)
                       @if ($r->id == $usuario->id_region)
-                        <option selected value="{{$r->id}}">{{$r->nombre}}</option>
+                        <option selected value={{$r->id}}>{{$r->nombre}}</option>
                       @else
-                        <option value="{{$r->id}}">{{$r->nombre}}</option>
+                        <option value={{$r->id}}>{{$r->nombre}}</option>
                       @endif
                   @endforeach
                 </select>
